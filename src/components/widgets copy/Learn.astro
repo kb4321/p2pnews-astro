@@ -1,0 +1,41 @@
+---
+const response = await fetch(
+  'https://cdn.contentful.com/spaces/xowuxyxy7n8e/entries/?select=fields.slug,fields.title&content_type=learn&access_token=1vq9X3ENctaylRgoVTmcWdCi37Pl8ApdsJqTsFxVFwY&'
+);
+const data = await response.json();
+---
+
+
+<li class="dropdown">
+  <button
+    class="font-bold hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+  >
+    Learn<svg viewBox="0 0 24 24" class="w-3.5 h-3.5 ml-0.5 hidden md:inline" astro-icon="tabler:chevron-down"
+      ><path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m6 9 6 6 6-6"></path></svg
+    >
+  </button>
+  <ul
+    class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl"
+  >
+    {
+      data.items.map((item) => (
+        <>
+          <li>
+            <a
+              class="first:rounded-t last:rounded-b font-semibold md:hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap"
+              href={"../learn/" + item.fields.slug}
+            >
+              {item.fields.title}
+            </a>
+          </li>
+        </>
+      ))
+    }
+  </ul>
+</li>
