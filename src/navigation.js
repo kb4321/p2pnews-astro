@@ -137,9 +137,9 @@ export const footerData = {
       title: 'Company',
       links: [
         { text: 'About', href: getPermalink('/about') },
-        { text: 'Contact', href: '#' },
-        { text: 'Terms', href: '#' },
-        { text: 'Privacy', href: '#' },
+        { text: 'Contact', href: getPermalink('/contact') },
+        { text: 'Terms', href: getPermalink('/terms') },
+        { text: 'Privacy', href: getPermalink('/privacy') },
       ],
     },
   ],
