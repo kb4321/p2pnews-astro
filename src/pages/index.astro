@@ -11,6 +11,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import HomeArticleGrid from '~/components/HomeArticleGrid.vue';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -33,5 +34,6 @@ const metadata = {
     Keeping it super simple
   </Fragment>
 </Hero>
+  <HomeArticleGrid client:load></HomeArticleGrid>
 
 </Layout>
