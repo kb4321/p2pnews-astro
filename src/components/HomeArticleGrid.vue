@@ -20,7 +20,7 @@
             <Loading v-if="isLoading"/>
 
             <a class="block mx-auto max-w-sm p-2 sm:border-none bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-h-60"
-                :href="'/article/' + p.sourceDomain+':' + p.slug" v-for="p in post" :key="p.id">
+                :href="'/article/' + p.slug" v-for="p in post" :key="p.id">
                 <h5 class="mb-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}
                 </h5>
 

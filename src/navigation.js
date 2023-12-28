@@ -3,119 +3,182 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Breaking',
       links: [
         {
-          text: 'SaaS',
+          text: 'Israel',
           href: getPermalink('/homes/saas'),
         },
         {
-          text: 'Startup',
+          text: 'Ukraine',
           href: getPermalink('/homes/startup'),
         },
         {
-          text: 'Mobile App',
+          text: 'Just In',
           href: getPermalink('/homes/mobile-app'),
         },
         {
-          text: 'Personal',
+          text: 'On-Going',
           href: getPermalink('/homes/personal'),
         },
       ],
     },
     {
-      text: 'Pages',
+      text: 'Trending',
       links: [
         {
-          text: 'Features (Anchor Link)',
+          text: 'Popular',
           href: getPermalink('/#features'),
         },
         {
-          text: 'Services',
+          text: 'Social Media',
           href: getPermalink('/services'),
         },
         {
-          text: 'Pricing',
+          text: 'Quirky',
           href: getPermalink('/pricing'),
         },
         {
-          text: 'About us',
+          text: 'Funny',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
+          text: 'Inspirational',
           href: getPermalink('/contact'),
         },
         {
-          text: 'Terms',
+          text: 'Opinions',
           href: getPermalink('/terms'),
         },
         {
-          text: 'Privacy policy',
+          text: 'Random',
           href: getPermalink('/privacy'),
         },
       ],
     },
     {
-      text: 'Landing',
+      text: 'Sports',
       links: [
         {
-          text: 'Lead Generation',
+          text: 'Football',
           href: getPermalink('/landing/lead-generation'),
         },
         {
-          text: 'Long-form Sales',
+          text: 'Basketball',
           href: getPermalink('/landing/sales'),
         },
         {
-          text: 'Click-Through',
+          text: 'Hockey',
           href: getPermalink('/landing/click-through'),
         },
         {
-          text: 'Product Details (or Services)',
+          text: 'Baseball',
           href: getPermalink('/landing/product'),
         },
         {
-          text: 'Coming Soon or Pre-Launch',
+          text: 'Soccer/Futbol',
           href: getPermalink('/landing/pre-launch'),
         },
         {
-          text: 'Subscription',
+          text: 'MMA',
+          href: getPermalink('/landing/subscription'),
+        },
+        {
+          text: 'Extreme',
+          href: getPermalink('/landing/subscription'),
+        },
+        {
+          text: 'Olympic',
+          href: getPermalink('/landing/subscription'),
+        },
+        {
+          text: 'Other',
           href: getPermalink('/landing/subscription'),
         },
       ],
     },
     {
-      text: 'Blog',
+      text: 'Celebrity',
       links: [
         {
-          text: 'Blog List',
+          text: 'Rumors',
           href: getBlogPermalink(),
         },
         {
-          text: 'Article',
+          text: 'Social Media',
           href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
         },
         {
-          text: 'Article (with MDX)',
+          text: 'Stories',
           href: getPermalink('markdown-elements-demo-post', 'post'),
         },
         {
-          text: 'Category Page',
+          text: 'Relationships',
           href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
         },
       ],
     },
     {
-      text: 'Widgets',
-      href: '#',
+      text: 'Entertainment',
+      links: [
+        {
+          text: 'Movies',
+          href: getBlogPermalink(),
+        },
+        {
+          text: 'TV Shows',
+          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+        },
+        {
+          text: 'Music',
+          href: getPermalink('markdown-elements-demo-post', 'post'),
+        },
+      ],
+    },
+    {
+      text: 'Politics',
+      links: [
+        {
+          text: 'US',
+          href: getBlogPermalink(),
+        },
+        {
+          text: '2024 ELection',
+          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+        },
+        {
+          text: 'World',
+          href: getPermalink('markdown-elements-demo-post', 'post'),
+        },
+        {
+          text: 'Conflicts',
+          href: getPermalink('tutorials', 'category'),
+        },
+      ],
+    },
+    {
+      text: 'Business',
+      links: [
+        {
+          text: 'Tech',
+          href: getBlogPermalink(),
+        },
+        {
+          text: 'Stocks',
+          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+        },
+        {
+          text: 'Economy',
+          href: getPermalink('markdown-elements-demo-post', 'post'),
+        },
+        { 
+          text: 'Trade',
+          href: getPermalink('tutorials', 'category'),
+        },
+      ],
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{ text: 'Subscribe', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
 };
 
 export const footerData = {
@@ -128,6 +191,7 @@ export const footerData = {
         { text: 'Sports', href: '#' },
         { text: 'Entertainment', href: '#' },
         { text: 'Celebrity', href: '#' },
+        { text: 'Politics', href: '#' },
         { text: 'Business', href: '#' },
         { text: 'Tech', href: '#' },
       ],
@@ -156,6 +220,6 @@ export const footerData = {
   ],
   footNote: `
     <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"></span>
-    Made by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://onwidget.com/"> onWidget</a> · All rights reserved.
+    NimbleNews - JB Corporations · All rights reserved.
   `,
 };
