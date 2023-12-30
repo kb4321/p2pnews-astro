@@ -20,6 +20,7 @@ export default defineConfig({
   site: SITE.site,
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+  adapter: netlify(),
   output: 'hybrid',
   integrations: [tailwind({
     applyBaseStyles: false
@@ -47,5 +48,4 @@ export default defineConfig({
       }
     }
   },
-  adapter: netlify()
 });
