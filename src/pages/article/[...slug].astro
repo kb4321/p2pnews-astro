@@ -15,10 +15,10 @@ if ( !slug ) {
   return Astro.redirect('/404');
 }
 // quotes?author=like.*??*"
-const response = await fetch(`https://zxhxtnrydorztwzysdqj.supabase.co/rest/v1/articles?slug=eq.${slug}`, {
+const response = await fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?slug=eq.${slug}`, {
   headers: {
     apikey:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHh0bnJ5ZG9yenR3enlzZHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIzOTM4NjIsImV4cCI6MTk5Nzk2OTg2Mn0.y301NUWWQe9RbIjwRZsxI0SB9hrumbzL31NDX12AdLI',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc2ZxeXRtaW1sb3d4bG13ZWJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1NjM4MjAsImV4cCI6MjAwMTEzOTgyMH0.mY3oqMAJDu9Fc9OrzIzhZQkILHxP9lc_lUnf-Q8Jh6s',
   },
 });
 
@@ -30,20 +30,30 @@ if (result.length === 0) {
 }
 
 const title = result[0].title;
-const imageUrl = result[0].imageUrl;
+const imageUrl = result[0].image_url;
 const tags = result[0].category;
-const description = result[0].description;
+const summary = result[0].summary;
 const url = result[0].url;
 const article_markdown = result[0].markdown;
-const reading_estimate = result[0].readingEstimate;
-const source_name = result[0].sourceName;
-const source_domain = result[0].sourceDomain;
-const published_at = result[0].publishedAt;
+const publishedAt = result[0].created_at;
 // console.log(source_name);
+const photoUrls = [
+      '/src/assets/images/author1.jpg',
+      '/src/assets/images/author2.jpg'
+      // Add more photo URLs as needed
+    ];
+
+    // Function to get a random index from the array
+    function getRandomIndex(array) {
+      return Math.floor(Math.random() * array.length);
+    }
+
+    // Get a random photo URL
+    const randomPhotoUrl = photoUrls[getRandomIndex(photoUrls)];
 
 const meta = {
   title: title,
-  description: description,
+  summary: summary,
   image: imageUrl,
 };
 ---
@@ -61,51 +71,36 @@ const meta = {
       </div>
     </div>
 
-    <Picture
-      src={imageUrl}
-      class="max-w-full mx-auto sm:rounded-md bg-gray-400 dark:bg-slate-700"
-      widths={[400, 960]}
-      sizes="(max-width: 900px) 400px, 900px"
-      alt={title || ''}
-      loading="eager"
-      aspectRatio={16 / 9}
-      width={960}
-      height={506}
-      loading="eager"
-      decoding="async"
-      background={undefined}
-    />
-
     <div class="flex-row px-4 bg-slate-50 dark:bg-slate-800 rounded-md max-w-4xl mx-auto">
-      <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter my-4">{title}</h1>
-      <SocialShare url={url} text={title} class="align-left text-gray-500 dark:text-slate-600" />
+  <h1 class="font-bold p-4 font-heading text-4xl md:text-5xl leading-tighter tracking-tighter my-4">{title}<h1>
+  
+  <div class="flex items-center justify-center">
+    <iframe width="560" height="315" src="https://youtube.com/embed/Y32CtXmdgFE?si=Znb7Wa1mKzv5yb69" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+  <SocialShare url={url} text={title} class="pt-4 align-left text-gray-500 dark:text-slate-600" />
 
-      <div class="flex mb-2">
-        <div class="flex-start py-2">
-          <img class="rounded-full" src={'https://logo.clearbit.com/' + source_domain} height="32" width="32" />
-        </div>
-        <div class="flex-row px-2 py-3">
-          <h5 class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">
-            {source_name}
-            <span>&#x2013;</span>
-            <DateUtil publishedAt={published_at} />
-          </h5>
-        </div>
-      </div>
+  <div class="flex mb-2">
+    <div class="flex items-center py-2">
+      <img class="mb2 rounded-full" src={randomPhotoUrl} height="32" width="32" />
+      <p class="pl-2 text-sm italic">By:</p>
+      <p class="p-2 text-sm italic underline">Daniel</p>
+      <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">
+        <span>&#x2013;</span>
+        <DateUtil publishedAt={publishedAt} />
+      </h5>
     </div>
+  </div>
+</div>
+
 
     <div
       class="mx-auto prose rounded-md dark:bg-slate-800 bg-slate-50 prose-lg max-w-4xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-4 p-4"
     >
-      <span class="font-semibold text-sm">{reading_estimate}</span>
-
+    <h8 class="italic text-sm text-gray-500 dark:text-slate-600">Quick Summary</h8>
+    <p class='font-semibold'>{summary}</>
       <Fragment set:html={article_markdown} />
-      <a
-        class="font-semibold hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-        href={url}
-      >
-        Source
-      </a>
+
     </div>
 
 

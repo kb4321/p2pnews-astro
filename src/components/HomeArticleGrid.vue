@@ -30,8 +30,7 @@
                             width="32" />
                     </div>
                     <div class="flex-row px-2 py-3 ">
-                        <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">{{
-                            p.sourceDomain }}
+                        <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">
                             <span>&#x2013; </span>
                             <DateUtil :publishedAt="p.publishedAt"></DateUtil>
                         </h5>
@@ -40,8 +39,8 @@
 
 
                 <!-- <h5 class="mb-2 mt-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2">
-                    <span class="float-left dark:bg-slate-700 bg-slate-100 p-1 rounded-md">{{ p.readingEstimate }}</span>
-                    <span class="float-right dark:bg-slate-700 bg-slate-100 p-1 rounded-md">{{ p.score }}/100</span>
+                    <span class="float-left dark:bg-slate-700 bg-slate-100 p-1 rounded-md">5 min red</span>
+                    <span class="float-right dark:bg-slate-700 bg-slate-100 p-1 rounded-md">85/100/100</span>
                 </h5> -->
 
             </a>
@@ -58,7 +57,7 @@ import Loading from './Loading.vue';
 
 const headers = { 
     "Content-Type": "application/json", 
-    'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHh0bnJ5ZG9yenR3enlzZHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIzOTM4NjIsImV4cCI6MTk5Nzk2OTg2Mn0.y301NUWWQe9RbIjwRZsxI0SB9hrumbzL31NDX12AdLI'};
+    'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc2ZxeXRtaW1sb3d4bG13ZWJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1NjM4MjAsImV4cCI6MjAwMTEzOTgyMH0.mY3oqMAJDu9Fc9OrzIzhZQkILHxP9lc_lUnf-Q8Jh6s'};
 
 export default {
     props: {
@@ -78,7 +77,7 @@ export default {
             const offset = 0;
             const limit = 28; 
 
-            fetch(`https://zxhxtnrydorztwzysdqj.supabase.co/rest/v1/articles?select=title,slug,id,publishedAt,sourceDomain,sourceName,score,readingEstimate&limit=28&order=publishedAt.desc`, { headers, cache: "force-cache"})
+            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,created_at&limit=28&order=created_at.desc`, { headers, cache: "force-cache"})
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
