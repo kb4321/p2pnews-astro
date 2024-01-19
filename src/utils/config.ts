@@ -4,7 +4,7 @@ import merge from 'lodash.merge';
 import type { MetaData } from '~/types';
 const jsonString = `{
   "site": {
-    "name": "AstroWind",
+    "name": "NimbleNews",
     "site": "https://astrowind.vercel.app",
     "base": "/",
     "trailingSlash": false,

@@ -1,48 +1,22 @@
 <template>
     <div class="container mx-auto">
-
-        <!-- <div class="display-column float-left my-10">
-            <a href="/news/btc"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4" >Bitcoin</button></a>
-            <a href="/news/eth"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4" >Ethereum</button></a>
-            <a href="/news/ltc"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4"  >Litecoin</button></a>
-            <a href="/news/bnb"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4"  >BNB</button></a>
-            <a href="/news/xrp"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4"  >XRP</button></a>
-            <a href="/news/ada"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4"  >Cardano</button></a>
-            <a href="/news/doge"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4" >DOGE</button></a>
-            <a href="/news/xmr"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4">XMR</button></a>
-            <a href="/news/trx"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4" >TRX</button></a>
-            <a href="/news/alt"><button class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm float-right mt-4">ALT</button></a>
-        </div> -->
-
-        
         <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-10 w-full">
 
             <Loading v-if="isLoading"/>
 
-            <a class="block mx-auto max-w-sm p-2 sm:border-none bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-h-60"
-                :href="'/article/' + p.slug" v-for="p in post" :key="p.id">
-                <h5 class="mb-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}
-                </h5>
-
+            <a class="block mx-auto max-w-sm p-2 sm:border-none bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-h-60" :href="'/article/' + p.slug" v-for="p in post" :key="p.id">
+                <div class="flex flex-col items-center"> <!-- Use flex and items-center for centering -->
+                    <img class="justify-center" src="../assets/images/hero.png" width="250" height="250" />
+                    <h5 class="mb-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}</h5>
+                </div>
                 <div class="flex">
-                    <div class="flex-start py-2" v-if=p.sourceDomain>
-                        <img class="rounded-full" :src="'https://logo.clearbit.com/' + p.sourceDomain" height="32" alt="source logo"
-                            width="32" />
-                    </div>
                     <div class="flex-row px-2 py-3 ">
-                        <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">
+                        <h5 class="text-sm font-semibold tracking-tight text-gray-400 dark:text-white line-clamp-">
                             <span>&#x2013; </span>
-                            <DateUtil :publishedAt="p.publishedAt"></DateUtil>
+                            <DateUtil :publishedAt="p.created_at"></DateUtil>
                         </h5>
                     </div>
                 </div>
-
-
-                <!-- <h5 class="mb-2 mt-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2">
-                    <span class="float-left dark:bg-slate-700 bg-slate-100 p-1 rounded-md">5 min red</span>
-                    <span class="float-right dark:bg-slate-700 bg-slate-100 p-1 rounded-md">85/100/100</span>
-                </h5> -->
-
             </a>
 
         </div>
