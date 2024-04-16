@@ -36,7 +36,17 @@ const summary = result[0].summary;
 const url = result[0].url;
 const article_markdown = result[0].markdown;
 const publishedAt = result[0].created_at;
+var youtube_url = result[0].video_url;
+var embeddable_youtube_url = '';
 // console.log(source_name);
+if(youtube_url){
+    const parsedUrl = new URL(youtube_url);
+
+    // Get the path part of the URL
+    const path = parsedUrl.pathname + parsedUrl.search;
+    const youtube_base = "https://www.youtube.com/embed";
+    youtube_url = youtube_base + path;
+}
 const photoUrls = [
       '/src/assets/images/author1.jpg',
       '/src/assets/images/author2.jpg'
@@ -75,7 +85,7 @@ const meta = {
   <h1 class="font-bold p-4 font-heading text-4xl md:text-5xl leading-tighter tracking-tighter my-4">{title}<h1>
   
   <div class="flex items-center justify-center">
-    <iframe width="560" height="315" src="https://youtube.com/embed/Y32CtXmdgFE?si=Znb7Wa1mKzv5yb69" frameborder="0" allowfullscreen></iframe>
+   {youtube_url ? <iframe width="560" height="315" src={youtube_url} frameborder="0" allowfullscreen></iframe> : <iframe width="560" height="315" src="https://youtube.com/embed/Y32CtXmdgFE?si=Znb7Wa1mKzv5yb69" frameborder="0" allowfullscreen></iframe> }
   </div>
   
   <SocialShare url={url} text={title} class="pt-4 align-left text-gray-500 dark:text-slate-600" />

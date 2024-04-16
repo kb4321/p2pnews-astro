@@ -6,7 +6,12 @@
 
             <a class="block mx-auto max-w-sm p-2 sm:border-none bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-h-60" :href="'/article/' + p.slug" v-for="p in post" :key="p.id">
                 <div class="flex flex-col items-center"> <!-- Use flex and items-center for centering -->
-                    <img class="justify-center" src="../assets/images/hero.png" width="250" height="250" />
+                    <div v-if="p.image_url">
+                    <img class="justify-center" style="max-height:194px; overflow:hidden" :src=p.image_url />
+                    </div>
+                    <div v-else>
+                    <img class="justify-center" src="https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s" width="320" height="180" />
+                    </div>
                     <h5 class="mb-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}</h5>
                 </div>
                 <div class="flex">
@@ -28,6 +33,8 @@
 import { reactive, computed } from 'vue'
 import DateUtil from './DateUtil.vue';
 import Loading from './Loading.vue';
+const placeholderImage = "https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s"
+const placeholderImage2 = "https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4"
 
 const headers = { 
     "Content-Type": "application/json", 
@@ -51,7 +58,7 @@ export default {
             const offset = 0;
             const limit = 28; 
 
-            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,created_at&limit=28&order=created_at.desc`, { headers, cache: "force-cache"})
+            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&limit=28&order=created_at.desc`, { headers, cache: "force-cache"})
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
