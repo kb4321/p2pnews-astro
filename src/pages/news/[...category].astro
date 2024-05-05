@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import ArticleGrid from '~/components/ArticleGrid.vue';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+//import { validEndpoint} from '~/data';
+
+const currentPath = Astro.url.pathname;
+const { category } = Astro.params;
+const cat = category.toUpperCase();
+
+
+//if (!validEndpoint.includes(currentPath)) {
+ // return Astro.redirect('/404');
+//}
+
+const meta = {
+  title: "Breaking & Trending Stories - Shortform news via quick summaries or video",
+  description: "Nimble News - Top stories - read stories in a fraction of the time."
+};
+---
+
+<Layout {meta}>
+  <section class="my-12">
+    <div class="container mx-auto">
+        <Fragment slot="subtitle">
+          <span class="hidden sm:inline">
+            <h1 class="font-semibold text-center pb-4">{category.toUpperCase()}</h1>
+
+            </spa>
+        </Fragment>
+      <ArticleGrid client:load category={category}></ArticleGrid>
+    </div>
+  </section>
+</Layout>

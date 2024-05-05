@@ -5,18 +5,20 @@
             <Loading v-if="isLoading"/>
 
             <a class="block mx-auto max-w-sm p-2 sm:border-none bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-h-60" :href="'/article/' + p.slug" v-for="p in post" :key="p.id">
-                <div class="flex flex-col items-center"> <!-- Use flex and items-center for centering -->
+                <div class="flex flex-col items-center" > <!-- Use flex and items-center for centering -->
                     <div v-if="p.image_url">
-                    <img class="justify-center" style="max-height:194px; overflow:hidden" :src=p.image_url />
+                    <div class="" style="display:flex; justify-content:center;align-items:center; border:1px solid white; background-color:#000; height:164px; width:290px; justify-content">
+                    <img class="justify-center" style="max-height:164px; max-wdith:290px;  overflow:hidden" :src=p.image_url />
+                    </div>
                     </div>
                     <div v-else>
-                    <img class="justify-center" src="https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s" width="320" height="180" />
+                    <img class="justify-center" src="https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s" width="320" height="180" style="max-height:164px; max-width:290px; overflow:hidden" />
                     </div>
-                    <h5 class="mb-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}</h5>
+                    <h5 class="mb-2 pt-2 text-l font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-3">{{ p.title }}</h5>
                 </div>
                 <div class="flex">
-                    <div class="flex-row px-2 py-3 ">
-                        <h5 class="text-sm font-semibold tracking-tight text-gray-400 dark:text-white line-clamp-">
+                    <div class="flex px-2 py-2 ">
+                        <h5 class="text-xs italic tracking-tight text-gray-400 dark:text-white line-clamp-">
                             <span>&#x2013; </span>
                             <DateUtil :publishedAt="p.created_at"></DateUtil>
                         </h5>
@@ -25,7 +27,11 @@
             </a>
 
         </div>
-
+        <div v-if="!hideLoadMore" class="flex justify-center p-8" >
+            <button @click="loadMore" class="btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none  p-4">
+                LOAD MORE
+            </button>
+        </div>
     </div>
 </template>
   
@@ -48,24 +54,63 @@ export default {
         return {
             post: reactive([]),
             isLoading: false,
+            hideLoadMore: false,
+            loadMoreCounter: 0,
         };
     },
     methods: {
         getPosts() {
             this.isLoading = true;
             console.log();
-            const category = 'BTC'
-            const offset = 0;
-            const limit = 28; 
+            const category = 'BTC';
+            let offset = 0;
+            let limit = 20; 
 
-            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&limit=28&order=created_at.desc`, { headers, cache: "force-cache"})
+            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&limit=${limit}&order=created_at.desc`, { headers, cache: "force-cache"})
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
+                    if (data.length < limit)
+                        this.hideLoadMore = true
+                      
+                    console.log(this.hideLoadMore)
+                    // this.post = data.articles
                     this.post = data;
+                    console.log(this.post)
                     this.isLoading = false;
+                    
                 });
         },
+        loadMore() {
+            this.isLoading = true;
+            const category = this.category;
+            let limit = 16;
+            let offset = this.post.length;
+            const loadMoreLimit = 4;
+            console.log('offset is....',offset);
+            // console.log("LOAD MORE");
+            // console.log(this.post.length, offset);
+
+            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&limit=${limit}&offset=${offset}&order=created_at.desc`, {headers,  cache: "force-cache" })
+                .then(response => response.json())
+                .then(data => {
+                    this.post.push(...data);
+                    console.log(data.length)
+                    if (data.length < limit){
+                        this.isEndOfArticles = true;
+                        this.hideLoadMore = true;
+                    }
+                    if (this.loadMoreCounter >= loadMoreLimit){
+                        console.log('hide the showmore ');
+                        this.hideLoadMore = true;
+                    }
+                    this.loadMoreCounter++;
+                    console.log(this.isEndOfArticles)
+                    // console.log(this.post);
+                    // console.log(data.articles)
+                    this.isLoading = false;
+                });
+        }
 
     },
     mounted() {

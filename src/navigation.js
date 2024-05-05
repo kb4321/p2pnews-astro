@@ -4,176 +4,183 @@ export const headerData = {
   links: [
     {
       text: 'Breaking',
+      href: getPermalink('/news/breaking'),
       links: [
         {
           text: 'Israel',
-          href: getPermalink('/homes/saas'),
+          href: getPermalink('/news/isreal')
         },
         {
           text: 'Ukraine',
-          href: getPermalink('/homes/startup'),
+          href: getPermalink('/news/ukraine'),
         },
         {
           text: 'Just In',
-          href: getPermalink('/homes/mobile-app'),
+          href: getPermalink('/news/justin'),
         },
         {
           text: 'On-Going',
-          href: getPermalink('/homes/personal'),
+          href: getPermalink('/news/ongoing'),
         },
       ],
     },
     {
       text: 'Trending',
+      href: getPermalink('/news/trending'),
       links: [
         {
           text: 'Popular',
-          href: getPermalink('/#features'),
+          href: getPermalink('/news/popular'),
         },
         {
           text: 'Social Media',
-          href: getPermalink('/services'),
+          href: getPermalink('/news/socialmedia'),
         },
         {
           text: 'Quirky',
-          href: getPermalink('/pricing'),
+          href: getPermalink('/news/quirky'),
         },
         {
           text: 'Funny',
-          href: getPermalink('/about'),
+          href: getPermalink('/news/funny'),
         },
         {
           text: 'Inspirational',
-          href: getPermalink('/contact'),
+          href: getPermalink('/news/inspirational'),
         },
         {
           text: 'Opinions',
-          href: getPermalink('/terms'),
+          href: getPermalink('/news/opinions'),
         },
         {
           text: 'Random',
-          href: getPermalink('/privacy'),
+          href: getPermalink('/news/random'),
         },
       ],
     },
     {
       text: 'Sports',
+      href: getPermalink('/news/sports'),
       links: [
         {
           text: 'Football',
-          href: getPermalink('/landing/lead-generation'),
+          href: getPermalink('/news/football'),
         },
         {
           text: 'Basketball',
-          href: getPermalink('/landing/sales'),
+          href: getPermalink('/news/basketball'),
         },
         {
           text: 'Hockey',
-          href: getPermalink('/landing/click-through'),
+          href: getPermalink('/news/hockey'),
         },
         {
           text: 'Baseball',
-          href: getPermalink('/landing/product'),
+          href: getPermalink('/news/baseball'),
         },
         {
           text: 'Soccer/Futbol',
-          href: getPermalink('/landing/pre-launch'),
+          href: getPermalink('/news/soccer'),
         },
         {
           text: 'MMA',
-          href: getPermalink('/landing/subscription'),
+          href: getPermalink('/news/mma'),
         },
         {
           text: 'Extreme',
-          href: getPermalink('/landing/subscription'),
+          href: getPermalink('/news/extreme'),
         },
         {
           text: 'Olympic',
-          href: getPermalink('/landing/subscription'),
+          href: getPermalink('/news/olympic'),
         },
         {
           text: 'Other',
-          href: getPermalink('/landing/subscription'),
+          href: getPermalink('/news/other'),
         },
       ],
     },
     {
       text: 'Celebrity',
+      href: getPermalink('/news/celebrity'),
       links: [
         {
           text: 'Rumors',
-          href: getBlogPermalink(),
+          href: getPermalink('/news/rumors'),
         },
         {
           text: 'Social Media',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: getPermalink('/news/socialmedia'),
         },
         {
           text: 'Stories',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: getPermalink('/news/stories'),
         },
         {
           text: 'Relationships',
-          href: getPermalink('tutorials', 'category'),
+          href: getPermalink('/news/relationships'),
         },
       ],
     },
     {
       text: 'Entertainment',
+      href: getPermalink('/news/entertainment'),
       links: [
         {
           text: 'Movies',
-          href: getBlogPermalink(),
+          href: getPermalink('/news/movies'),
         },
         {
           text: 'TV Shows',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: getPermalink('/news/tv'),
         },
         {
           text: 'Music',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: getPermalink('/news/music'),
         },
       ],
     },
     {
       text: 'Politics',
+      href: getPermalink('/news/politics'),
       links: [
         {
           text: 'US',
-          href: getBlogPermalink(),
+          href: getPermalink('/news/us'),
         },
         {
           text: '2024 ELection',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: getPermalink('/news/election'),
         },
         {
           text: 'World',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: getPermalink('/news/world'),
         },
         {
           text: 'Conflicts',
-          href: getPermalink('tutorials', 'category'),
+          href: getPermalink('/news/conflicts'),
         },
       ],
     },
     {
       text: 'Business',
+      href: getPermalink('/news/business'),
       links: [
         {
           text: 'Tech',
-          href: getBlogPermalink(),
+          href: getPermalink('/news/tech'),
         },
         {
           text: 'Stocks',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: getPermalink('/news/stocks'),
         },
         {
           text: 'Economy',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: getPermalink('/news/economy'),
         },
         { 
           text: 'Trade',
-          href: getPermalink('tutorials', 'category'),
+          href: getPermalink('/news/trade'),
         },
       ],
     },
@@ -186,14 +193,14 @@ export const footerData = {
     {
       title: 'News Categories',
       links: [
-        { text: 'Breaking News', href: '#' },
-        { text: 'Trending', href: '#' },
-        { text: 'Sports', href: '#' },
-        { text: 'Entertainment', href: '#' },
-        { text: 'Celebrity', href: '#' },
-        { text: 'Politics', href: '#' },
-        { text: 'Business', href: '#' },
-        { text: 'Tech', href: '#' },
+        { text: 'Breaking News', href: '/news/breaking' },
+        { text: 'Trending', href: '/news/trending' },
+        { text: 'Sports', href: '/news/sports' },
+        { text: 'Entertainment', href: '/news/entertainment' },
+        { text: 'Celebrity', href: '/news/celebrity' },
+        { text: 'Politics', href: '/news/politics' },
+        { text: 'Business', href: '/news/business' },
+        { text: 'Tech', href: '/news/tech' },
       ],
     },
     {

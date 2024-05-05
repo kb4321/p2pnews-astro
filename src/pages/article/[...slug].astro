@@ -39,6 +39,7 @@ const publishedAt = result[0].created_at;
 var youtube_url = result[0].video_url;
 var embeddable_youtube_url = '';
 // console.log(source_name);
+// Currently storing the default youtube share link that youtube gives you, the video Id is split and converted into a youtube embeddable link so it can be embedded. Will fix later.
 if(youtube_url){
     const parsedUrl = new URL(youtube_url);
 
@@ -47,10 +48,27 @@ if(youtube_url){
     const youtube_base = "https://www.youtube.com/embed";
     youtube_url = youtube_base + path;
 }
+if (youtube_url.includes("shorts/")) {
+  //Fixes youtube link if it has the 'shorts/' within link
+  //youtube.com/shorts/FKF43DF wil not embed a video properly
+  //youtube.com/embed/FKF43DF   is link needed to embed
+    // Replace "page/" with an empty string
+    youtube_url = youtube_url.replace("shorts/", "");
+}
 const photoUrls = [
-      '/src/assets/images/author1.jpg',
-      '/src/assets/images/author2.jpg'
+        
+      'https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg',
+      'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fGF1dGhvcnxlbnwwfHwwfHx8MA%3D%3D.jpg',
+      'https://images.unsplash.com/photo-1627673081968-c1f6204b0a14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&.jpg',
+      'https://images.unsplash.com/photo-1627673081968-c1f6204b0a14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw4cUhrX1BURy1CNHx8ZW58MHx8fHx8.jpg',
+      'https://images.unsplash.com/photo-1548810020-ea2f1da35cff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8OHFIa19QVEctQjR8fGVufDB8fHx8fA%3D%3D.jpg',
       // Add more photo URLs as needed
+    ];
+    const authors = [
+      'Daniel B.',
+      'Alex C.',
+      'Chris K.',
+      'Jimmy G.',
     ];
 
     // Function to get a random index from the array
@@ -58,8 +76,13 @@ const photoUrls = [
       return Math.floor(Math.random() * array.length);
     }
 
+    function getRandomIndex2(array) {
+      return Math.floor(Math.random() * array.length);
+    }
     // Get a random photo URL
     const randomPhotoUrl = photoUrls[getRandomIndex(photoUrls)];
+    const randomAuthor = authors[getRandomIndex2(authors)];
+
 
 const meta = {
   title: title,
@@ -94,7 +117,7 @@ const meta = {
     <div class="flex items-center py-2">
       <img class="mb2 rounded-full" src={randomPhotoUrl} height="32" width="32" />
       <p class="pl-2 text-sm italic">By:</p>
-      <p class="p-2 text-sm italic underline">Daniel</p>
+      <p class="p-2 pr-2 text-sm italic">{randomAuthor}</p>
       <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-">
         <span>&#x2013;</span>
         <DateUtil publishedAt={publishedAt} />

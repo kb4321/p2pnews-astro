@@ -14,7 +14,7 @@
     },
     setup(props) {
       
-      console.log(props.publishedAt)
+      //console.log(props.publishedAt)
   
       const date = computed<string>((): string => {
         // return dayjs(date_example.value).format('MM/DD/YYYY HH:mm');
