@@ -2,6 +2,12 @@
 import { SITE } from '~/utils/config';
 ---
 
-<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  🚀 {SITE?.name}
+<span class="flex items-center">
+  <!-- Change size from w-16 h-16 to a smaller size like w-12 h-12 -->
+  <div class="w-12 h-12 rounded-full overflow-hidden mr-2">
+    <img src="src/assets/images/logo.png" alt="Logo" class="object-cover w-full h-full"/>
+  </div>
+  <span class="text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
+    {SITE?.name}
+  </span>
 </span>
