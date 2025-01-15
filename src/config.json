@@ -20,7 +20,7 @@
       "site_name": "AstroWind",
       "images": [
         {
-          "url": "~/public/images/default.png",
+          "url": "~/assets/images/default.png",
           "width": 1200,
           "height": 628
         }
