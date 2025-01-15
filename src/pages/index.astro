@@ -14,7 +14,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import HomeArticleGrid from '~/components/HomeArticleGrid.vue';
 
 const metadata = {
-  title: 'NimbleNews - News Summarized Quickly',
+  title: 'ReportShorts - News Summarized Quickly',
   ignoreTitleTemplate: true,
 };
 ---
@@ -25,12 +25,15 @@ const metadata = {
   <Fragment slot="title">
     <!-- Free template for <span class="hidden lg:inline">create your website <br class="2xl:hidden"/> with</span>
     <span class="text-accent dark:text-white highlight"> Astro 2.0</span> + Tailwind CSS -->
+  <span class="text-lg leading-relaxed tracking-normal">
+
     Trending News Summarized Quickly
+    </span>
   </Fragment>
 
   <Fragment slot="subtitle">
     <span class="hidden sm:inline">
-      <span class="font-semibold">NimbleNews brings you the trending news summarized quickly! Catch up on what's going on today faster than ever! Let's be honest, most stories you just want the main points and could live without all the extra fluff. Quick & simple.
+      <span class="font-semibold text-base"><span class="whitespace-nowrap">Bringing you daily trending news summarized quickly with <span class="italic">razor fast</span> short videos or quick articles.</span><br /> <span class="font-bold">Catch up</span> on what's going on today faster than ever! <br /> Cutting the fluff out of news.  
   </Fragment>
 </Hero>
   <HomeArticleGrid client:load></HomeArticleGrid>
