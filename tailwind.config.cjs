@@ -16,8 +16,13 @@ module.exports = {
         serif: ['var(--aw-font-serif)', ...defaultTheme.fontFamily.serif],
         heading: ['var(--aw-font-heading)', ...defaultTheme.fontFamily.sans],
       },
+      // Add the custom utility class for text size with clamp
+      fontSize: {
+        'clamped': ['clamp(0.875rem, 2vw, 1rem)', '1.5rem'],
+      },
     },
   },
+
   plugins: [require('@tailwindcss/typography')],
   darkMode: 'class',
 };

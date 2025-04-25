@@ -16,7 +16,7 @@ const metadata = {
 
   <ContactUs
     title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    subtitle="Our support team is delighted to help you."
     inputs={[
       {
         type: 'text',
@@ -41,3 +41,31 @@ const metadata = {
 
 
 </Layout>
+
+<script>
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Message sent successfully!');
+      form.reset();
+    } else {
+      alert('Error: ' + result.error);
+    }
+  }
+</script>

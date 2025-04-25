@@ -1,11 +1,12 @@
 ---
+// Form.astro
 import type { Form } from '~/types';
 import Button from '~/components/ui/Button.astro';
 
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props as Form;
 ---
 
-<form>
+<form id="contactForm">
   {
     inputs &&
       inputs.map(
@@ -32,7 +33,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
 
   {
     textarea && (
-      <div>
+      <div class="mb-6">
         <label for="textarea" class="block text-sm font-medium">
           {textarea.label}
         </label>
@@ -83,3 +84,40 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
     )
   }
 </form>
+
+<!-- Add Supabase logic -->
+<script type="module" client:load>
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+  
+const supabaseUrl = 'https://jisfqytmimlowxlmwebg.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc2ZxeXRtaW1sb3d4bG13ZWJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1NjM4MjAsImV4cCI6MjAwMTEzOTgyMH0.mY3oqMAJDu9Fc9OrzIzhZQkILHxP9lc_lUnf-Q8Jh6s'
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
+  const form = document.getElementById('contactForm')
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('textarea')
+
+    if (!name || !email || !message) {
+      alert('Please fill in all fields.')
+      return
+    }
+
+    const { error } = await supabase.from('messages').insert([{ name, email, message }])
+
+    if (error) {
+      alert('Error sending message. Please try again.')
+      console.error(error)
+    } else {
+      alert('Message sent! Thanks for reaching out.')
+      form.reset()
+    }
+  })
+</script>
+
+

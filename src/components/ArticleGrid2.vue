@@ -1,81 +1,77 @@
 <template>
-  <div class="container mx-auto px-2 sm:px-2 lg:px-2">
-    <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-10 w-full">
-      
-      <Loading v-if="isLoading" />
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Daily Articles</h1>
 
-      <a
-        v-for="p in post"
-        :key="p.id"
-        :href="'/article/' + p.slug"
-        class="block bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col h-full"
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        v-for="article in articles"
+        :key="article.id"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 overflow-hidden"
       >
-        <!-- Image -->
-        <div class="w-full h-48 overflow-hidden">
-          <img
-            v-if="p.image_url"
-            :src="p.image_url"
-            alt="Article image"
-            class="w-full h-full object-cover"
-          />
-          <img
-            v-else
-            :src="`https://picsum.photos/600/400?random=${p.id}`"
-            alt="Fallback"
-            class="w-full h-full object-cover"
-          />
-        </div>
+        <img
+          v-if="article.image"
+          :src="article.image"
+          :alt="article.title"
+          class="w-full h-48 object-cover"
+        />
 
-        <!-- Card Content -->
-        <div class="p-4 flex flex-col justify-between flex-grow">
-          <!-- Title -->
-          <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-3">
-            {{ p.title }}
-          </h5>
-
-          <!-- Author + Date -->
-          <p class="text-xs italic text-gray-500 dark:text-gray-400 mb-3">
-            {{ p.author || 'Unknown Author' }} ·
-            <DateUtil :publishedAt="p.created_at" />
+        <div class="p-5">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            {{ article.title }}
+          </h2>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            {{ article.date }} · {{ article.author }}
           </p>
 
-      <!-- Tags -->
-      <div v-if="p.article_tags && p.article_tags.length" class="flex flex-wrap gap-2 mt-auto">
-        <span
-          v-for="t in p.article_tags.slice(0, 3)"
-          :key="t.tag.id"
-          class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full"
-        >
-          #{{ t.tag.name }}
-        </span>
-      </div>
-
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in article.tags"
+              :key="tag"
+              class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full"
+            >
+              #{{ tag }}
+            </span>
+          </div>
         </div>
-      </a>
-    </div>
-
-    <!-- Load More -->
-    <div v-if="!hideLoadMore" class="flex justify-center p-8">
-      <button
-        @click="loadMore"
-        class="btn ml-2 py-2.5 px-6 font-semibold shadow-none p-4"
-      >
-        LOAD MORE
-      </button>
+      </div>
     </div>
   </div>
 </template>
 
-
+<script setup>
+const articles = [
+  {
+    id: 1,
+    title: "Your First Article",
+    date: "April 21, 2025",
+    author: "Jane Doe",
+    image: "https://picsum.photos/seed/article1/400/300",
+    tags: ["vue", "graphql", "tailwind"],
+  },
+  {
+    id: 2,
+    title: "Exploring Vue 4",
+    date: "April 22, 2025",
+    author: "John Smith",
+    image: "https://picsum.photos/seed/article1/400/300",
+    tags: ["vue", "composition-api", "javascript"],
+  },
+  {
+    id: 3,
+    title: "Styling with Tailwind CSS",
+    date: "April 23, 2025",
+    author: "Alice Johnson",
+    image: "https://picsum.photos/seed/article1/400/300",
+    tags: ["css", "tailwind", "frontend"],
+  },
+];
+</script>
   
 <script type="module">
 import { reactive, computed } from 'vue'
 import DateUtil from './DateUtil.vue';
 import Loading from './Loading.vue';
-
-const placeholderImage = "https://picsum.photos/600/400";
-
-const placeholderImage1 = "https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s"
+const placeholderImage = "https://fastly.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s"
 const placeholderImage2 = "https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4"
 import subcategoryMap from '../data/subcategory_map.json'; // adjust path as needed
 const getCategoryId = (category, subcategoryMap) => {
@@ -83,7 +79,6 @@ const getCategoryId = (category, subcategoryMap) => {
 };
 const headers = { 
     "Content-Type": "application/json", 
-    'Cache-Control': 'no-store',
     'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppc2ZxeXRtaW1sb3d4bG13ZWJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1NjM4MjAsImV4cCI6MjAwMTEzOTgyMH0.mY3oqMAJDu9Fc9OrzIzhZQkILHxP9lc_lUnf-Q8Jh6s'};
 
 export default {
@@ -98,7 +93,7 @@ export default {
             loadMoreCounter: 0,
         };
     },
-    methods: {  
+    methods: {
         getPosts() {
             this.isLoading = true;
           //  console.log();
@@ -113,7 +108,7 @@ export default {
             const mainCategories = ['breaking','trending','sports','celebrity','entertainment','politics','business'];
             let query;
             let querySubcategory = "https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&sub_category=like.*" + category + "*&limit=" + limit + "&order=created_at.desc";
-            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at&category=like.*${category}*&limit=${limit}&order=created_at.desc`;
+            const queryCategory = "https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&category=like.*" + category + "*&limit=" + limit + "&order=created_at.desc";
             query = querySubcategory;
             
             if (mainCategories.includes(category)){
@@ -122,13 +117,14 @@ export default {
         const subcategoryId = getCategoryId(category, subcategoryMap);
         console.log('Subcategory ID:', subcategoryId)
         console.log(subcategoryId)
-        querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id),article_tags(tag:tags(*))&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}`;
+        //querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/article_subcategories?select=article:articles(title,slug,id,image_url,created_at)&subcategory_id=eq.${subcategoryId}&limit=${limit}`;
+        querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id)&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}`;
         query = querySubcategory;
 
     }
             //console.log('the query is',query);
 
-            fetch(query, { headers, cache: "no-store"})
+            fetch(query, { headers, cache: "force-cache"})
                 .then(response => response.json())
                 .then(data => {
                    // console.log('data length',data.length)
@@ -162,9 +158,6 @@ export default {
             let query;
             let querySubcategory;
             querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id)&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}&offset=${offset}`;
-            querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id),article_tags(tag:tags(*))&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}&offset=${offset}`;
-            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at&category=like.*${category}*&limit=${limit}&offset=${offset}&order=created_at.desc`;
-
             query = querySubcategory;
             if (mainCategories.includes(category)){
                 query = queryCategory;
@@ -172,7 +165,7 @@ export default {
             console.log('offset is....',offset);
             // console.log("LOAD MORE");
             // console.log(this.post.length, offset);
-            fetch(query, {headers,  cache: "no-store" })
+            fetch(query, {headers,  cache: "force-cache" })
                 .then(response => response.json())
                 .then(data => {
                     this.post.push(...data);
