@@ -1,0 +1,15 @@
+  <div class="flex items-center justify-center">
+   {youtube_url ? <iframe width="560" height="315" src={youtube_url} frameborder="0" allowfullscreen></iframe> : <iframe width="560" height="315" src="https://youtube.com/embed/Y32CtXmdgFE?si=Znb7Wa1mKzv5yb69" frameborder="0" allowfullscreen></iframe> }
+  </div>
+  
+  <SocialShare url={url} text={title} class="pt-4 align-left text-gray-500 dark:text-slate-600" />
+
+  <div class="text-sm mt-10 mb-10">
+      <div class="w-full text-center">
+        <a class="uppercase" href="#">Advertisement</a><a href="#"
+          ><img
+            class="mx-auto"
+            src="https://image.jimcdn.com/app/cms/image/transf/none/path/sc300b455628a248f/image/i1152e4768a907603/version/1528457462/binance-krypto-trading-sign-up.png"
+          /></a>
+      </div>
+    </div>

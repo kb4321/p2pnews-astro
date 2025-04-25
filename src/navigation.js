@@ -15,10 +15,6 @@ export const headerData = {
           href: getPermalink('/news/ukraine'),
         },
         {
-          text: 'Just In',
-          href: getPermalink('/news/justin'),
-        },
-        {
           text: 'On-Going',
           href: getPermalink('/news/ongoing'),
         },
@@ -149,10 +145,6 @@ export const headerData = {
           href: getPermalink('/news/us'),
         },
         {
-          text: '2024 ELection',
-          href: getPermalink('/news/election'),
-        },
-        {
           text: 'World',
           href: getPermalink('/news/world'),
         },
@@ -185,7 +177,8 @@ export const headerData = {
       ],
     },
   ],
-  actions: [{ text: 'Subscribe', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{ text: 'Subscribe', type: 'subscribe' }],
+  
 };
 
 export const footerData = {
@@ -200,7 +193,6 @@ export const footerData = {
         { text: 'Celebrity', href: '/news/celebrity' },
         { text: 'Politics', href: '/news/politics' },
         { text: 'Business', href: '/news/business' },
-        { text: 'Tech', href: '/news/tech' },
       ],
     },
     {
@@ -220,10 +212,9 @@ export const footerData = {
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: '#' },
+    { ariaLabel: 'Youtube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@reportshorts/shorts' },
   ],
   footNote: `
     <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"></span>
