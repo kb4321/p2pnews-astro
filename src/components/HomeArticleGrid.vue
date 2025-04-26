@@ -99,7 +99,7 @@ export default {
             let offset = 0;
             let limit = 20; 
 
-            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at&limit=${limit}&order=created_at.desc`, { headers, cache: "no-store"})
+            fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at,article_tags(tag:tags(*))&limit=${limit}&order=created_at.desc`, { headers, cache: "no-store"})
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)

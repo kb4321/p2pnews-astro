@@ -113,9 +113,9 @@ export default {
             const mainCategories = ['breaking','trending','sports','celebrity','entertainment','politics','business'];
             let query;
             let querySubcategory = "https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,created_at&sub_category=like.*" + category + "*&limit=" + limit + "&order=created_at.desc";
-            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at&category=like.*${category}*&limit=${limit}&order=created_at.desc`;
             query = querySubcategory;
-            
+            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at,article_tags(tag:tags(*))&category=like.*${category}*&limit=${limit}&order=created_at.desc`;
+
             if (mainCategories.includes(category)){
                 query = queryCategory;
             }  else {
@@ -163,7 +163,8 @@ export default {
             let querySubcategory;
             querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id)&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}&offset=${offset}`;
             querySubcategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=*,article_subcategories!inner(subcategory_id),article_tags(tag:tags(*))&article_subcategories.subcategory_id=eq.${subcategoryId}&order=created_at.desc&limit=${limit}&offset=${offset}`;
-            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at&category=like.*${category}*&limit=${limit}&offset=${offset}&order=created_at.desc`;
+            
+            let queryCategory = `https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at,article_tags(tag:tags(*))&category=like.*${category}*&limit=${limit}&offset=${offset}&order=created_at.desc`;
 
             query = querySubcategory;
             if (mainCategories.includes(category)){
