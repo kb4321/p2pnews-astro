@@ -17,12 +17,15 @@
             :src="p.image_url"
             alt="Article image"
             class="w-full h-full object-cover"
+            @error="handleImageError($event, p.id)"
+
           />
           <img
             v-else
             :src="`https://picsum.photos/600/400?random=${p.id}`"
             alt="Fallback"
             class="w-full h-full object-cover"
+
           />
         </div>
 
@@ -92,12 +95,18 @@ export default {
         };
     },
     methods: {
+
+        handleImageError(event, id) {
+          console.log('Image error detected')
+          event.target.src = `https://picsum.photos/600/400?random=${id}`;
+        },
+
         getPosts() {
             this.isLoading = true;
             console.log();
             const category = 'BTC';
             let offset = 0;
-            let limit = 20; 
+            let limit = 20;   
 
             fetch(`https://jisfqytmimlowxlmwebg.supabase.co/rest/v1/articles?select=title,slug,id,image_url,author,created_at,article_tags(tag:tags(*))&limit=${limit}&order=created_at.desc`, { headers, cache: "no-store"})
                 .then(response => response.json())
