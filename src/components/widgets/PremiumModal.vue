@@ -3,7 +3,7 @@
     <!-- Trigger Button with Diamond Icon -->
     <button @click="isOpen = true" class="p-2 text-blue-600 hover:text-blue-800" aria-label="Join Premium Waitlist">
   <!-- Inline Tabler Diamond SVG -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke="currentColor" fill="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
       d="M6 4h12l4 6-10 12L2 10l4-6z" />
   </svg>
